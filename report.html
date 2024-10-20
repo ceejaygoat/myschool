@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 5px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .report-title {
+            font-size: 24px;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Report Access</h1>
+    <div class="form-container">
+        <form id="report-form">
+            <input type="text" id="admission-number" placeholder="Admission Number" required>
+            <input type="text" id="parent-id" placeholder="Parent ID" required>
+            <input type="submit" value="Get Report">
+        </form>
+    </div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learner Admission List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #218838;
+        }
+        /* Modal styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4); 
+            padding-top: 60px; 
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Learner Admission List</h1>
+    <div class="search-container">
+        <input type="text" id="search-admission" placeholder="Enter Admission Number or Parent ID">
+        <input type="button" value="Search" onclick="searchLearner()">
+    </div>
+    <table id="learner-table">
+        <thead>
+            <tr>
+                <th>Admission Number</th>
+                <th>Name</th>
+                <th>Parent ID</th>
+                <th>Action</th> <!-- New column for action buttons -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1001</td>
+                <td>John Doe</td>
+                <td>P001</td>
+                <td><input type="button" value="View Report Card" onclick="viewReportCard('1001')"></td> <!-- Button for report card -->
+            </tr>
+            <tr>
+                <td>1002</td>
+                <td>Jane Smith</td>
+                <td>P002</td>
+                <td><input type="button" value="View Report Card" onclick="viewReportCard('1002')"></td>
+            </tr>
+            <tr>
+                <td>1003</td>
+                <td>Alice Johnson</td>
+                <td>P003</td>
+                <td><input type="button" value="View Report Card" onclick="viewReportCard('1003')"></td>
+            </tr>
+            <tr>
+                <td>1004</td>
+                <td>Bob Brown</td>
+                <td>P004</td>
+                <td><input type="button" value="View Report Card" onclick="viewReportCard('1004')"></td>
+            </tr>
+            <tr>
+                <td>1005</td>
+                <td>Charlie Black</td>
+                <td>P005</td>
+                <td><input type="button" value="View Report Card" onclick="viewReportCard('1005')"></td>
+            </tr>
+            <tr>
+                <td>1006</td>
+                <td>Emily White</td>
+                <td>P006</td>
+                <td><input type="button" value="View Report Card" onclick="viewReportCard('1006')"></td>
+            </tr>
+            <!-- Add more learners as needed -->
+        </tbody>
+    </table>
+
+    <!-- Modal for report card -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Report Card</h2>
+            <div id="report-details"></div>
+        </div>
+    </div>
+
+    <script>
+        function searchLearner() {
+            const input = document.getElementById('search-admission').value.toLowerCase();
+            const table = document.getElementById('learner-table');
+            const rows = table.getElementsByTagName('tr');
+
+            // Loop through all table rows and hide those that don't match the search
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                // Check both admission number and parent ID
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    rows[i].style.display = ''; // Show the row
+                } else {
+                    rows[i].style.display = 'none'; // Hide the row
+                }
+            }
+        }
+
+        function viewReportCard(admissionNumber) {
+            const reportDetails = document.getElementById('report-details');
+
+            // Simulated report card data
+            reportDetails.innerHTML = `
+                <p><strong>Admission Number:</strong> ${admissionNumber}</p>
+                <p><strong>Name:</strong> ${getLearnerName(admissionNumber)}</p>
+                <h3>Subjects</h3>
+                <table>
+                    <tr><th>Subject</th><th>Grade</th></tr>
+                    <tr><td>Mathematics</td><td>A</td></tr>
+                    <tr><td>Science</td><td>B</td></tr>
+                    <tr><td>English</td><td>A</td></tr>
+                    <tr><td>History</td><td>C</td></tr>
+                </table>
+                <h4>Overall Status: Promoted</h4>
+            `;
+
+            // Show the modal
+            document.getElementById('reportModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('reportModal').style.display = 'none';
+        }
+
+        function getLearnerName(admissionNumber) {
+            const learners = {
+                '1001': 'John Doe',
+                '1002': 'Jane Smith',
+                '1003': 'Alice Johnson',
+                '1004': 'Bob Brown',
+                '1005': 'Charlie Black',
+                '1006': 'Emily White'
+            };
+            return learners[admissionNumber] || 'Unknown';
+        }
+    </script>
+</body>
+</html>
+

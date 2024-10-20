@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class List - Motswela Secondary School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        function searchChild() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('classList');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const nameCell = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+                const surnameCell = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+                const fullName = nameCell + ' ' + surnameCell;
+
+                if (fullName.includes(input)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Motswela Secondary School - Class List</h1>
+    </header>
+
+    <div class="container">
+        <h2>Search for Your Child</h2>
+        <input type="text" id="searchInput" onkeyup="searchChild()" placeholder="Search by Child's Name or Surname...">
+        
+        <table id="classList">
+            <tr>
+                <th>First Name</th>
+                <th>Surname</th>
+                <th>Grade</th>
+                <th>Class Teacher</th>
+            </tr>
+            <!-- Students from Grade 12A to 8D -->
+            <!-- 12A -->
+            <tr><td>Alice</td><td>Anderson</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Bob</td><td>Brown</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Charlie</td><td>Clark</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>David</td><td>Davis</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Evelyn</td><td>Evans</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Fiona</td><td>Foster</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>George</td><td>Garcia</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Hannah</td><td>Harris</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Isaac</td><td>Johnson</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Jack</td><td>Jones</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Karen</td><td>Kim</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Liam</td><td>Lee</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Mia</td><td>Martinez</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Noah</td><td>Nelson</td><td>12A</td><td>Mr. Smith</td></tr>
+            <tr><td>Olivia</td><td>Olsen</td><td>12A</td><td>Mr. Smith</td></tr>
+            <!-- Repeat for 12B, 12C, 12D, 11A, 11B, ... down to 8D -->
+            <!-- Example for 12B -->
+            <tr><td>Paul</td><td>Parker</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Quinn</td><td>Roberts</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Rose</td><td>Rivera</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Sam</td><td>Scott</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Tina</td><td>Thompson</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Ulysses</td><td>Williams</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Vera</td><td>Walker</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Wendy</td><td>Wilson</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Xander</td><td>Xiong</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Yara</td><td>Young</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <tr><td>Zane</td><td>Zhang</td><td>12B</td><td>Ms. Taylor</td></tr>
+            <!-- Continue similarly for 12C, 12D, ..., down to 8D -->
+            <!-- Complete entries until you have a total of 560 students -->
+        </table>
+    </div>
+
+</body>
+</html>

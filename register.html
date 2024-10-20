@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Face</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #video {
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h2>Register Your Face</h2>
+    <input type="text" id="student_name" placeholder="Enter your name" />
+    <video id="video" autoplay></video>
+    <button id="capture">Capture Photo</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <button id="register">Register</button>
+
+    <script>
+        const video = document.getElementById('video');
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            });
+
+        document.getElementById('capture').addEventListener('click', () => {
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        });
+
+        document.getElementById('register').addEventListener('click', () => {
+            const studentName = document.getElementById('student_name').value;
+            const canvas = document.getElementById('canvas');
+            const imgData = canvas.toDataURL('image/png');
+
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `imgData=${encodeURIComponent(imgData)}&student_name=${studentName}`
+            }).then(response => {
+                return response.text();
+            }).then(data => {
+                alert(data);
+            });
+        });
+    </script>
+</body>
+</html>
